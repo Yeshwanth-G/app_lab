@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+  </head>
+  <body class="bdy">
+    <div class="heading">
+      <h1>Welcome 
+        <% if (locals.details) { %>
+            <%= details.name %>
+            <% } %>
+        !!
+      </h1>
+    </div>
+    <div class="outer-container">
+    <% if (locals.details) { %>
+    <p>Your Details</p>
+      <p>Name: <%= details.name %></p>
+      <p>Email: <%= details.email %></p>
+      <p>Age: <%= details.age %></p>
+   <% } %>
+   <button onclick="logout()">Logout</button>
+  </div>
+  </body>
+  <script>
+    function logout() {
+    console.log("logout");
+  fetch('/logout',  {
+    method: 'POST'
+  }).then(()=>{
+    window.location.href='/'
+  })
+}
+  </script>  
+</html> 

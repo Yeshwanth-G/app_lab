@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Signup</title>
+  </head>
+  <body class="bdy">
+    <div class="heading">
+      <h1>Signup</h1>
+    </div>
+    <div class="outer-container">
+    <form action="/signup" method="POST">
+
+    <label for="Name">Name:</label>
+      <input type="text" name="name" required></input>
+      <br>
+      <br>
+      <label for="age">Age:</label>
+      <input type="number" name="age" required></input>
+      <p></p>
+
+      <label for="email">email:</label>
+      <input type="text" name="email" required></input>
+      <br>
+      <br>
+      <label for="password">password:</label>
+      <input type="password" name="password" required></input>
+      
+      <button type="submit" class="btn btn-primary">Signup</button>
+    </form>
+   
+  </div>
+  </body>
+  <script>
+    function delete_req(id) {
+  fetch('/' + id,  {
+    method: 'DELETE'
+  }).then(()=>{
+    console.log('I deleted..')
+  })
+}
+  </script>  
+</html> 

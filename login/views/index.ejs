@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+  </head>
+  <body class="bdy">
+    <div class="heading">
+      <h1>Login</h1>
+    </div>
+    <div class="outer-container">
+    <form action="/" method="POST">
+      <label for="username">Username:</label>
+      <input type="text" name="username" required></input>
+      <br>
+      <br>
+      <label for="password">password:</label>
+      <input type="password" name="password" required></input>
+      <p></p>
+      <button type="submit" class="btn btn-primary">Login</button>
+      <a style="display:inline;padding: 20px;" href="/signup">New Here?</a>
+    </form>
+    <% if (locals.info) { %>
+      <p style="color: red;"><%= info %></p>  
+   <% } %>
+  </div>
+  </body>
+  <script>
+    function delete_req(id) {
+  fetch('/' + id,  {
+    method: 'DELETE'
+  }).then(()=>{
+    console.log('I deleted..')
+    window.location.href='/'
+  })
+}
+  </script>  
+</html> 
