@@ -1,2 +1,2 @@
 -- DELETE from User;
-SELECT * from User; 
+SELECT * from User;
