@@ -5,14 +5,6 @@ app.use(cors());
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const oneDay = 1000 * 60 * 60 * 24;
-
-app.use(sessions({
-    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
-    saveUninitialized:true,
-    cookie: { maxAge: oneDay },
-    resave: false
-}));
-app.use(cookieParser())
 app.use(express.urlencoded({extended:false}));
 app.use(express.json())
 app.set('view engine', 'ejs');

@@ -1,30 +1,20 @@
 const express = require('express')
+const fs = require("fs")
 const router = express.Router();
-const { PrismaClient } = require('@prisma/client')
+const { PrismaClient } = require('@prisma/client');
+const { response } = require('express');
 const prisma = new PrismaClient();
 router.get('/', async (request, response) => {
-    try {
-        session = request.session
-        console.log("from get",session);
-        if (session.userid) {
-            const user_id = await prisma.user.findMany({
-                where: {
-                    id:session.userid,
-                }
-            })
-            if (user_id.length>0) {
-                response.render('welcome.ejs', { details: user_id[0] })
-            }else response.render('index.ejs') 
-        } else response.render('index.ejs')
-    } catch (e) {
-        response.json({
-            messege: e
-        })
-    }
+    response.json({
+        name:"yeshwanth",
+        email:"pop",
+        password:"ioio"
+    })
 })
 
-router.post('/', async (req, res) => {
+router.post('/login', async (req, res) => {
     const { email, password } = req.body;
+    console.log("From Login",req.body);
     try {
         const user_id = await prisma.user.findMany({
             where: {
@@ -33,14 +23,18 @@ router.post('/', async (req, res) => {
             }
         })
         if (user_id.length == 0) {
-            res.render('index.ejs', { info: "Invalid Credentials" })
+            res.status(200).json({
+                messege: `No Such User`
+            })
         } else {
-        session=req.session;
-        session.userid=user_id[0].id;
-        console.log(req.session)
-            res.render('welcome.ejs', { details: user_id[0] })
+            res.status(200).json({
+                ...user_id,
+                messege: `Signed in...`
+            })
+            console.log("OPOPP");
         }
     } catch (err) {
+        console.log("Errorr",err);
         res.status(400).json({
             messege: `Server Error ${err}`
         })
@@ -61,9 +55,10 @@ router.get('/signup', async (request, response) => {
 
 
 router.post('/signup', async (req, res) => {
-    const { email, password, age, name } = req.body;
-    console.log(req.body);
-    const pq = parseInt(age);
+    const { email, password, name } = req.body;
+    console.log("from signup",email,password,name);
+    const age=1
+    const pq = 1;
     try {
         await prisma.user.create({
             data: {
@@ -73,8 +68,11 @@ router.post('/signup', async (req, res) => {
                 age: pq,
             }
         })
-        res.render('index.ejs', { info: "please login" });
+        res.json({
+            messege:"User Signed Up"
+        })
     } catch (err) {
+        console.log("opppo",err);
         res.status(400).json({
             messege: `Failed to signup ${err}`,
         })
