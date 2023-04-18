@@ -5,6 +5,7 @@ const { PrismaClient } = require('@prisma/client');
 const { response } = require('express');
 const prisma = new PrismaClient();
 router.get('/', async (request, response) => {
+    console.log("helloo");
     response.json({
         name:"yeshwanth",
         email:"pop",
@@ -31,7 +32,6 @@ router.post('/login', async (req, res) => {
                 ...user_id,
                 messege: `Signed in...`
             })
-            console.log("OPOPP");
         }
     } catch (err) {
         console.log("Errorr",err);
@@ -56,8 +56,8 @@ router.get('/signup', async (request, response) => {
 
 router.post('/signup', async (req, res) => {
     const { email, password, name } = req.body;
+    if(!name)name='yesh';
     console.log("from signup",email,password,name);
-    const age=1
     const pq = 1;
     try {
         await prisma.user.create({
