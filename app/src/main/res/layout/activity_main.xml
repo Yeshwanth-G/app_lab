@@ -6,77 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <FrameLayout
+        android:id="@+id/cameraview"
+        android:layout_width="409dp"
+        android:orientation="vertical"
+        android:layout_height="329dp"
+        android:layout_marginBottom="116dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"></FrameLayout>
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/capture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="608dp"
-        android:text="Register"
+        android:text="Capture"
+        app:layout_constraintBottom_toTopOf="@+id/cameraview"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/email"
+    <Button
+        android:id="@+id/li"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="email address"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:hint="password"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/captcha_inp"
-        android:hint="enter captcha..."
-        android:ems="10"
-        app:layout_constraintBottom_toTopOf="@+id/captcha_img"
+        android:text="Last Image"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
-    <ImageView
-        android:id="@+id/captcha_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.622"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/captcha_img"
-        app:layout_constraintTop_toBottomOf="@+id/captcha_inp"
-        app:srcCompat="@drawable/ic_baseline_refresh_24" />
-
+        app:layout_constraintTop_toBottomOf="@+id/cameraview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
