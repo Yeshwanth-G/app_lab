@@ -1,0 +1,67 @@
+<html>
+    <body style="margin:0">
+        <div style="display: flex; position:sticky; top: 0; flex-direction:row; justify-content: space-around;padding: 20px; background-color: black;">
+            <a href="#home" style="text-decoration: none;color: white;">Home</a>
+            <a href="#about" style="text-decoration: none;color: white;">About</a>
+            <a href="#login" style="text-decoration: none;color: white;">Login</a>
+            <a href="#order" style="text-decoration: none;color: white;">Order</a>
+            <div style="flex: 0.5;"></div>
+        </div>
+    </body>
+    <img src='' width="20" height="20">
+    <h3 style="color: blue;">This is register page</h3>
+    <a href='https://www.google.com'  target="_blank">Link</a>
+    <div id="about">
+        <h3>About</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto temporibus nesciunt vitae. Molestias, aut doloribus. Ratione ducimus quia, vitae doloremque iste laudantium aperiam, incidunt provident at ipsa deserunt, ad reprehenderit?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum necessitatibus dolor nesciunt ipsam deserunt explicabo quasi corrupti porro doloribus, exercitationem consectetur nam. Sunt eum assumenda tempora facere dolorem, qui at.</p>
+    </div>
+    <hr>
+    <div id="Desc">
+        <h3>Description</h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi vel, nisi soluta, minima, adipisci explicabo dignissimos maxime totam cum delectus tempore placeat asperiores. Architecto molestiae enim reprehenderit? Nam, animi deserunt!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum necessitatibus dolor nesciunt ipsam deserunt explicabo quasi corrupti porro doloribus, exercitationem consectetur nam. Sunt eum assumenda tempora facere dolorem, qui at.</p>
+    </div>
+    <hr width="120px">
+    <div id="Login">
+        <h3>Login</h3>
+        <div>
+            <label for="email">Email:</label>
+            <input id="email" style="width:200px"/>
+            <br>
+            <br>
+            <label for="password">password</label>
+            <input id="password" style="width:200px;">
+            <br><br>
+            <button onclick="func()">Login</button>
+    </div>
+    </div>
+    <script>
+        async function func(){
+            var email=document.getElementById("email").value;
+            var password=document.getElementById("password").value;
+            const res=await fetch('http://localhost:8000/login',{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    email,
+                    password
+                })
+                
+            })
+            console.log("status",res.status);
+            if(res.status==200){
+                window.url='/';
+            }
+        }
+    </script>
+    <div id="order">
+        <h3>Order</h3>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos accusantium provident ipsam ipsa nobis quibusdam architecto, ipsum labore, sequi deleniti cum! Deserunt odio commodi natus sequi deleniti perspiciatis vitae vero?</p>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus odio similique doloribus doloremque illum quaerat maiores sed dolor asperiores sequi. Hic aliquid sint distinctio quo, et quos architecto! Cupiditate, eum?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui voluptatum voluptas ipsa maxime alias magni itaque reprehenderit quis nesciunt placeat nemo, modi aliquam officia quod dignissimos maiores aut accusamus a minus tenetur excepturi voluptatibus? Laboriosam.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est suscipit assumenda, et magnam nam veritatis iure sed earum voluptatibus numquam asperiores fuga amet corporis obcaecati soluta natus quia dignissimos explicabo repellendus aliquam quaerat praesentium eligendi. Ea minima ut totam voluptatem optio tempore tempora similique ducimus provident ex ullam, distinctio accusamus voluptatum quos sequi exercitationem vel earum corporis! Libero assumenda eos consequuntur officiis incidunt blanditiis magni magnam, quae est eligendi dolores pariatur at sint ipsam quibusdam corrupti velit ab eius dicta dolore soluta saepe perferendis. Consequuntur magni, reiciendis, temporibus culpa dolorem corrupti autem explicabo ea aut doloremque ratione est impedit dignissimos!</p>
+    </div>
+</html>
