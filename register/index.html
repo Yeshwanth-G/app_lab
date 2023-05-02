@@ -25,36 +25,59 @@
     <hr width="120px">
     <div id="Login">
         <h3>Login</h3>
-        <div>
-            <label for="email">Email:</label>
-            <input id="email" style="width:200px"/>
+        <div style>
+            <label for="task">Task:</label>
+            <input id="task" style="width:200px"/>
             <br>
             <br>
-            <label for="password">password</label>
-            <input id="password" style="width:200px;">
+            <label for="priority">priority/label>
+            <input id="priority" style="width:200px;">
             <br><br>
-            <button onclick="func()">Login</button>
+            <button onclick="func()">Add</button>
+            <button onclick="func(id)">Add</button>
+            <div id="tasks">
+            </div>
     </div>
     </div>
     <script>
-        async function func(){
-            var email=document.getElementById("email").value;
-            var password=document.getElementById("password").value;
-            const res=await fetch('http://localhost:8000/login',{
-                method:'POST',
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body:JSON.stringify({
-                    email,
-                    password
-                })
-                
-            })
-            console.log("status",res.status);
-            if(res.status==200){
-                window.url='/';
+        var tasks=[];
+         function func(){
+            document.getElementById("tasks").innerHTML="";
+            var priority=parseInt(document.getElementById("priority").value);
+            tasks.splice(priority,0,{"name":(document.getElementById("task").value),priority});
+            for(var i=0;i<tasks.length;i++){
+                tasks[i].priority=i;
             }
+            tasks.sort((a,b)=>a.priority-b.priority);
+            console.log(tasks);
+            for(var i=0;i<tasks.length;i++){
+                document.getElementById("tasks").innerHTML+=`
+                <div style="border: 2px solid #000;width:500px;margin:10px">
+                    <p>Name:${tasks[i].name}</p>
+                    <p>priority:${tasks[i].priority}</p>
+                    <button onclick="del(${i})">Delete</button>
+                </div>
+                `
+            }
+        }
+        function del(id){
+            tasks.splice(id,1);
+            console.log("del",tasks);
+            document.getElementById("tasks").innerHTML="";
+            for(var i=0;i<tasks.length;i++){
+                tasks[i].priority=i;
+            }
+            tasks.sort((a,b)=>a.priority-b.priority);
+            for(var i=0;i<tasks.length;i++){
+                document.getElementById("tasks").innerHTML+=`
+                <div style="border: 2px solid #000;width:500px;margin:10px">
+                    <p>Name:${tasks[i].name}</p>
+                    <p>priority:${tasks[i].priority}</p>
+                    <button onclick="del(${i})">Delete</button>
+                </div>
+                `
+            }
+
         }
     </script>
     <div id="order">
